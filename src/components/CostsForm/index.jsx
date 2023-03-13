@@ -1,7 +1,7 @@
 import Button from 'components/Button' 
 import { useState } from 'react'
-// import { format } from "date-fns"
-// import { ru } from "date-fns/locale";
+import uuid4 from 'uuid4'
+
 
 const categories = ['Еда', 'Коммунальные платежи', 'Образование', 'Транспорт', 'Развлечения', 'Лекарства', 'Прочее']
 
@@ -9,7 +9,7 @@ const categories = ['Еда', 'Коммунальные платежи', 'Обр
 function CostForm (props) {
     const {addCosts} = props
     const [sum, setSum] = useState('')
-    const [category, setCategory] = useState(categories[1])
+    const [category, setCategory] = useState(categories[0])
     // const today = new Date()
     
 
@@ -18,11 +18,14 @@ function CostForm (props) {
         const cost = {
             sum,
             category,
-            // date: {format(today, "D MMMM YYYY", { locale: ru })}
+            id: uuid4(),
+            date: new Date()
         }
         addCosts(cost)
         setSum('')
     }
+
+    console.log(cost)
 
     return (
         <div>
@@ -35,15 +38,15 @@ function CostForm (props) {
                     placeholder="сумма" 
                     className="border border-solid border-gray-400 rounded p-2"
                 />
-                <select className="col-span-2 border border-solid border-gray-400 rounded p-2">
+                <select className="col-span-2 border border-solid border-gray-400 rounded p-2"
                     value={category}
                     onChange={(event) => {
                         console.log(event.target.value)
-                        setCategory(event.target.value)}}
+                        setCategory(event.target.value)}}>
                     
-                    {categories.map(category => {
+                    {categories.map(c => {
                         return (
-                            <option key={category}>{category}</option>
+                            <option key={c}>{c}</option>
                         )
                     })}
                 </select>
