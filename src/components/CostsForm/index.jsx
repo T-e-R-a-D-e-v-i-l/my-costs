@@ -5,14 +5,11 @@ import uuid4 from 'uuid4'
 
 const categories = ['Еда', 'Коммунальные платежи', 'Образование', 'Транспорт', 'Развлечения', 'Лекарства', 'Прочее']
 
-
 function CostForm (props) {
     const {addCosts} = props
     const [sum, setSum] = useState('')
     const [category, setCategory] = useState(categories[0])
-    // const today = new Date()
     
-
     const handleClick = event => {
         event.preventDefault()
         const cost = {
@@ -21,12 +18,12 @@ function CostForm (props) {
             id: uuid4(),
             date: new Date()
         }
+        
         addCosts(cost)
         setSum('')
+        // console.log(cost)
     }
-
-    console.log(cost)
-
+   
     return (
         <div>
             <form  className="flex justify-center gap-10 m-8">
