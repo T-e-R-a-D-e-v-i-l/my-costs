@@ -10,7 +10,8 @@ function App() {
 
     const [costs, setCosts] = useState([])
     
-    costs.reverse() // не работает
+    const reversedСosts= costs.reverse()
+    console.log(reversedСosts)
 
     const addCosts = (cost) => {
         setCosts([...costs, cost])

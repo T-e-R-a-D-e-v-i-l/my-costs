@@ -54,3 +54,4 @@ function CostForm (props) {
 }
 
 export default CostForm
+export {categories}

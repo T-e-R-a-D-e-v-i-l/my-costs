@@ -1,58 +1,33 @@
-import { useState } from 'react'
+import {categories} from 'components/CostsForm'
 
-function Results () {
+function Results ({costs}) {
 
-    const [results, setResults] = useState([
-        {
-            name:'Еда',
-            amount:0
-        },
-        {
-            name:'Коммунальные платежи',
-            amount:0
-        },
-        {
-            name:'Образование',
-            amount:0
-        },
-        {
-            name:'Транспорт',
-            amount:0
-        },
-        {
-            name:'Развлечения',
-            amount:0
-        },
-        {
-            name:'Лекарства',
-            amount:0
-        },
-        {
-            name:'Прочее',
-            amount:0
-        }
-    ])
+    const categories = ['Еда', 'Коммунальные платежи', 'Образование', 'Транспорт', 'Развлечения', 'Лекарства', 'Прочее']
 
-    // const sumall = costs.map(item => item.sum).reduce((sum, el) => sum + el, 0);
-    // console.log(sumall)
 
-    // const filtered = costs.filter(cost => {
-    //     if (cost.category === "Еда")
-    // }).map (cost => {
-    //    costs.reduce((prev, current) => prev + cost.sum)
-    // })
+    const sumall = costs.map(item => item.sum).reduce((sum, el) => sum + parseInt(el), 0);
+
+    const getCategoryAmount = (category) => {
+        const filtered = costs.filter(cost => {
+            if (category === cost.category) {
+                return true
+            }
+        })
+        const sum = filtered.reduce((prev, current) => prev + parseInt(current.sum), 0)
+        return sum
+    }
     
     return (
         <div className='flex flex-col items-start px-16 gap-3'>
-            {results.map((result) => {
+            {categories.map((category) => {
                 return(
                     <div className='flex gap-2'>
-                        <button>{result.name}:</button>
-                        <p>{result.amount}</p>
+                        <button>{category}:</button>
+                        <p>{getCategoryAmount(category)}</p>
                     </div>
                 )
             })}
-            <p className='text-2xl font-bold'>Итого : </p>
+            <p className='text-2xl font-bold'>Итого : {sumall}</p>
         </div>
     )
 }
