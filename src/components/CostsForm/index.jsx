@@ -3,7 +3,7 @@ import { useState } from 'react'
 import uuid4 from 'uuid4'
 
 
-const categories = ['Еда', 'Коммунальные платежи', 'Образование', 'Транспорт', 'Развлечения', 'Лекарства', 'Прочее']
+export const categories = ['Еда', 'Коммунальные платежи', 'Образование', 'Транспорт', 'Развлечения', 'Лекарства', 'Прочее']
 
 function CostForm (props) {
     const {addCosts} = props
@@ -54,4 +54,3 @@ function CostForm (props) {
 }
 
 export default CostForm
-export {categories}

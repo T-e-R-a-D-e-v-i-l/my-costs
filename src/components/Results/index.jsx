@@ -2,9 +2,6 @@ import {categories} from 'components/CostsForm'
 
 function Results ({costs}) {
 
-    const categories = ['Еда', 'Коммунальные платежи', 'Образование', 'Транспорт', 'Развлечения', 'Лекарства', 'Прочее']
-
-
     const sumall = costs.map(item => item.sum).reduce((sum, el) => sum + parseInt(el), 0);
 
     const getCategoryAmount = (category) => {
@@ -18,17 +15,24 @@ function Results ({costs}) {
     }
     
     return (
-        <div className='flex flex-col items-start px-16 gap-3'>
-            {categories.map((category) => {
-                return(
-                    <div className='flex gap-2'>
-                        <button>{category}:</button>
-                        <p>{getCategoryAmount(category)}</p>
-                    </div>
-                )
-            })}
-            <p className='text-2xl font-bold'>Итого : {sumall}</p>
+        <div className='flex'>
+            <div className='flex flex-col items-start px-16 gap-3'>
+                <h2 className='text-lg font-bold underline'>Учет расходов</h2>
+                {categories.map((category) => {
+                    return(
+                        <div className='flex gap-2'>
+                            <button className="hover:underline">{category}:</button>
+                            <p>{getCategoryAmount(category)}</p>
+                        </div>
+                    )
+                })}
+                <p className='text-2xl font-bold'>Итого : {sumall}</p>
+            </div>
+            <div className='pl-20'>
+                <h2 className='text-lg font-bold underline'>Учет доходов</h2>
+            </div>
         </div>
+
     )
 }
 
