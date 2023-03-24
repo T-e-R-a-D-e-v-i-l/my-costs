@@ -6,7 +6,7 @@ import uuid4 from 'uuid4'
 export const categories = ['Еда', 'Коммунальные платежи', 'Образование', 'Транспорт', 'Развлечения', 'Лекарства', 'Прочее']
 
 function CostForm (props) {
-    const {addCosts} = props
+    const { addCosts } = props
     const [sum, setSum] = useState('')
     const [category, setCategory] = useState(categories[0])
     
@@ -21,12 +21,13 @@ function CostForm (props) {
         
         addCosts(cost)
         setSum('')
-        // console.log(cost)
+        
     }
    
     return (
         <div>
-            <form  className="flex justify-center gap-10 m-8">
+            <form  className="flex justify-center gap-3 m-8">
+                <label className='text-xl font-semibold'>Расходы</label>
                 <input 
                     onChange={(event) => {setSum(event.target.value)}}
                     value={sum} 
