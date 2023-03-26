@@ -7,21 +7,24 @@ export const categories = ['Еда', 'Коммунальные платежи', 
 
 function CostForm (props) {
     const { addCosts } = props
-    const [sum, setSum] = useState('')
+    const [sumCost, setSumCost] = useState('')
+    const [sumFinance, setSumFinance] = useState('')
     const [category, setCategory] = useState(categories[0])
-    
+           
     const handleClick = event => {
         event.preventDefault()
         const cost = {
-            sum,
+            sumCost,
+            sumFinance,
             category,
             id: uuid4(),
             date: new Date()
         }
+
+        console.log(cost)
         
         addCosts(cost)
-        setSum('')
-        
+        setSumCost('')
     }
    
     return (
@@ -29,8 +32,8 @@ function CostForm (props) {
             <form  className="flex justify-center gap-3 m-8">
                 <label className='text-xl font-semibold'>Расходы</label>
                 <input 
-                    onChange={(event) => {setSum(event.target.value)}}
-                    value={sum} 
+                    onChange={(event) => {setSumCost(event.target.value)}}
+                    value={sumCost} 
                     name="sum" 
                     type="number" 
                     placeholder="сумма" 

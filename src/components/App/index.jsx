@@ -12,7 +12,7 @@ function App() {
 
     const [costs, setCosts] = useState([])
     
-    const reversedСosts= costs.reverse()
+    const reversedСosts = [...costs].reverse()
     
     const addCosts = (cost) => {
         setCosts([...costs, cost])
@@ -27,18 +27,18 @@ function App() {
             <div className='max-w-screen-md mx-auto shadow-xl rounded-3xl bg-slate-200 py-12 my-20'>
                 <h1 className='text-5xl text-center font-semibold pb-8'>Анализ финансов</h1>
                 <Finance addFinance={addFinance}/>
-                <CostForm addCosts={addCosts} reverse={reversedСosts}/>
+                <CostForm addCosts={addCosts} />
                 <Diagram />
                 <Results costs={costs}/>
-                {costs.map((cost) => {
+                {reversedСosts.map((cost) => {
                     return(
                         <div key={cost.id}  className=' flex justify-between p-4 mx-10 border-bottom-solid'>
                             <div>
                                 <p className='text-indigo-700'>{format(cost.date, "dd MMMM yyyy, HH:mm",  {locale: ru} )}</p>
-                                <p className='text-lg '>{cost.category}</p>
+                                <p className='text-lg'>{cost.category}</p>
                             </div>
-                            <p className='text-lg font-medium text-slate-700'>- {cost.sum} ₽</p>
-                            <p className='text-lg font-medium text-slate-700'>+ {cost.finance} ₽</p>
+                            <p className='text-lg font-medium'>- {cost.sumCost} ₽</p>
+                            {/* <p className='text-lg font-medium text-slate-700'>+ {cost.sumFinance} ₽</p> */}
                         </div>
                     )
                 })}

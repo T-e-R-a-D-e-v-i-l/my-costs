@@ -5,18 +5,18 @@ import uuid4 from 'uuid4'
 function Finance (props) {
 
     const { addFinance  } = props
-    const [finance, setFinance] = useState('')
+    const [sumFinance, setSumFinance] = useState('')
 
     const handleClick = event => {
         event.preventDefault()
         const cost = {
-            finance,
+            sumFinance,
             id: uuid4(),
             date: new Date()
         }
 
         addFinance(cost)
-        setFinance('')
+        setSumFinance('')
     }
     
     return (
@@ -25,8 +25,8 @@ function Finance (props) {
                 <label className='text-xl font-semibold'>Доходы</label>
                 <input name="finance"
                     placeholder="сумма" 
-                    value={finance}
-                    onChange={(event) => {setFinance(event.target.value)}}
+                    value={sumFinance}
+                    onChange={(event) => {setSumFinance(event.target.value)}}
                     className="border border-solid border-gray-400 rounded p-2"
                 />
                 <Button title={"Добавить"} handleClick={handleClick} type="submit"/>
