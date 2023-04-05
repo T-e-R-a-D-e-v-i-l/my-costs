@@ -1,13 +1,13 @@
-import {categories} from 'components/CostsForm'
+import { categories } from 'components/CostsForm'
 
-function Results ({costs}) {
-
-    const sumAllCosts = costs.map(item => item.sumCost).reduce((sumCost, el) => sumCost + parseInt(el), 0);
+function Results({ costs }) {
 
     const getCategoryAmount = (category) => {
         const filtered = costs.filter(cost => {
             if (category === cost.category) {
                 return true
+            } else {
+                return false
             }
         })
         const sum = filtered.reduce((prev, current) => prev + parseInt(current.sumCost), 0)
@@ -16,31 +16,45 @@ function Results ({costs}) {
 
     const getFinanceAmount = (sumFinance) => {
         const filterFinance = costs.filter(cost => {
-            if (sumFinance === cost.sumFinance) {
+            if (cost.sumFinance) {
                 return true
+            } else {
+                return false
             }
         })
         const resultFinance = filterFinance.reduce((prev, current) => prev + parseInt(current.sumFinance), 0)
         return resultFinance
     }
 
+    const getCostsAmount = (sumCost) => {
+        const filterCost = costs.filter(cost => {
+            if (cost.sumCost) {
+                return true
+            } else {
+                return false
+            }
+        })
+        const resultCosts = filterCost.reduce((prev, current) => prev + parseInt(current.sumCost), 0)
+        return resultCosts
+    }
+
     return (
-        <div className='flex mt-16 mb-10'>
+        <div className='flex mt-10 mb-10'>
             <div className='flex flex-col items-start px-16 gap-3'>
                 <h2 className='text-2xl font-bold underline'>Учет расходов</h2>
                 {categories.map((category) => {
-                    return(
+                    return (
                         <div key={category} className='flex gap-2'>
                             <button className="hover:underline text-zinc-800 text-lg font-medium">{category}:</button>
                             <p>{getCategoryAmount(category)}</p>
                         </div>
                     )
                 })}
-                <p className='text-2xl font-bold'>Итого : {sumAllCosts}</p>
+                <p className='text-2xl font-bold'>Расходы : {getCostsAmount()} ₽</p>
             </div>
             <div className='pl-20'>
                 <h2 className='text-2xl font-bold underline'>Учет доходов</h2>
-                <p className='text-2xl font-bold pt-10'>Итого : {getFinanceAmount}</p>
+                <p className='text-2xl font-bold pt-10'>Доходы: {getFinanceAmount()} ₽</p>
             </div>
         </div>
 
