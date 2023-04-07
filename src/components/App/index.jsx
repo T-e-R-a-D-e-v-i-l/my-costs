@@ -22,6 +22,8 @@ function App() {
         setCosts([...costs, cost])
     }
 
+    const [months, setMonths] = useState('month[1]')
+
     return (
         <div className='bg-slate-100 py-20'>
             <div className='max-w-screen-md mx-auto overflow-hidden shadow-xl rounded-3xl bg-stone-100 '>
