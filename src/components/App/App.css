@@ -39,7 +39,7 @@
 }
 
 .background {
-    background: linear-gradient(to right, rgba(206, 220, 220, 0.6), rgba(204, 221, 220, 0.8)), url(images/cost.jpg);
+    background: linear-gradient(to right, rgba(206, 220, 220, 0.6), rgba(204, 221, 220, 0.8)), url(cost.jpg);
     background-size: cover;
     background-position: center;
 }

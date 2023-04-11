@@ -11,8 +11,10 @@ import FilterDate from 'components/FilterDate';
 function App() {
 
     const [costs, setCosts] = useState([])
-    const [months, setMonths] = useState('month[1]')
+    // const [month, setMonth] = useState(null)
     const [category, setCategory] = useState(null)
+
+    // console.log(month)
 
     const reversedСosts = [...costs].reverse()
 
@@ -44,7 +46,7 @@ function App() {
                     <Finance addFinance={addFinance} />
                     <CostForm addCosts={addCosts} />
                     <Diagram costs={costs} />
-                    <FilterDate months={months} setMonths={setMonths} />
+                    {/* <FilterDate months={month} setMonths={setMonth} /> */}
                     <Results costs={costs} setCategory={setCategory} />
                 </div>
                 {filterByCategory.map((cost) => {

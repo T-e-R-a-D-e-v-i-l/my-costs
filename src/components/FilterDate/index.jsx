@@ -1,11 +1,10 @@
-import { useState } from "react"
 
-const month = ['За все время', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+const months = ['За все время', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
 
 // const year = ['2023', '2022']
 
-function FilterDate() {
-    const [months, setMonths] = useState('month[1]')
+function FilterDate({ month, setMonth }) {
+    // const [months, setMonths] = useState('month[1]')
     // const [years, setYears] = useState('year[1]')
 
     return (
@@ -21,8 +20,11 @@ function FilterDate() {
             </select> */}
             <select className="col-span-2 border border-solid border-gray-400 rounded p-2">
                 value={months}
-                onChange={(event) => { setMonths(event.target.value) }}
-                {month.map(month => {
+                onChange={(event) => {
+                    // setMonth(months)
+                    setMonth(event.target.value)
+                }}
+                {months.map(month => {
                     return (
                         <option key={month}>{month}</option>
                     )
