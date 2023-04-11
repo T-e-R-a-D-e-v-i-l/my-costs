@@ -49,7 +49,7 @@ function Diagram({ costs }) {
     }
 
     return (
-        <div className='flex justify-center gap-32'>
+        <div className='flex justify-center gap-32 mt-10'>
             <PieChart width={200} height={250}>
                 <Pie
                     data={data}
@@ -67,13 +67,14 @@ function Diagram({ costs }) {
                 </Pie>
             </PieChart>
             <div>
-                <p className='bg-blue-400 py-px px-3 my-2 rounded'>Еда</p>
-                <p className='bg-teal-200 py-px px-3 my-2 rounded'>Коммунальные платежи</p>
-                <p className='bg-yellow-200 py-px px-3 my-2 rounded'>Образование</p>
-                <p className='bg-amber-300 py-px px-3 my-2 rounded'>Транспорт</p>
-                <p className='bg-pink-200 py-px px-3 my-2 rounded'>Развлечение</p>
-                <p className='bg-sky-200 py-px px-3 my-2 rounded'>Лекарствае</p>
-                <p className='bg-indigo-300 py-px px-3 my-2 rounded'>Прочее</p>
+
+                <p className='flex gap-2 bg-blue-400 py-px px-3 my-2 rounded'><img src="./images/food_icon.png" alt="" className='w-5 h-5 m-1' />Еда</p>
+                <p className='flex gap-2 bg-teal-200 py-px px-3 my-2 rounded'><img src="./images/money_icon.png" alt="" className='w-5 h-5 m-1' />Коммунальные платежи</p>
+                <p className='flex gap-2 bg-yellow-200 py-px px-3 my-2 rounded'><img src="./images/education_icon.png" alt="" className='w-5 h-5 m-1' />Образование</p>
+                <p className='flex gap-2 bg-amber-300 py-px px-3 my-2 rounded'><img src="./images/transport_icon.png" alt="" className='w-5 h-5 m-1' />Транспорт</p>
+                <p className='flex gap-2 bg-pink-200 py-px px-3 my-2 rounded'><img src="./images/carnival_icon.png" alt="" className='w-5 h-5 m-1' />Развлечение</p>
+                <p className='flex gap-2 bg-sky-200 py-px px-3 my-2 rounded'><img src="./images/medicines_icon.png" alt="" className='w-5 h-5 m-1' />Лекарствае</p>
+                <p className='flex gap-2 bg-indigo-300 py-px px-3 my-2 rounded'><img src="./images/other_icon.png" alt="" className='w-5 h-5 m-1' />Прочее</p>
             </div>
         </div>
     );

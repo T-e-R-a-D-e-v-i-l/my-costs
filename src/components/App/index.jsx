@@ -6,13 +6,27 @@ import { format } from "date-fns"
 import { ru } from "date-fns/locale";
 import Finance from 'components/Finance'
 import Diagram from 'components/Diagram'
-import FilterDate from 'FilterDate';
+import FilterDate from 'components/FilterDate';
 
 function App() {
 
     const [costs, setCosts] = useState([])
+    const [months, setMonths] = useState('month[1]')
+    const [category, setCategory] = useState(null)
 
     const reversedСosts = [...costs].reverse()
+
+    const filterByCategory = reversedСosts.filter(c => {
+        if (category) {
+            if (c.category === category) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return true
+        }
+    })
 
     const addCosts = (cost) => {
         setCosts([...costs, cost])
@@ -22,8 +36,6 @@ function App() {
         setCosts([...costs, cost])
     }
 
-    const [months, setMonths] = useState('month[1]')
-
     return (
         <div className='bg-slate-100 py-20'>
             <div className='max-w-screen-md mx-auto overflow-hidden shadow-xl rounded-3xl bg-stone-100 '>
@@ -32,10 +44,10 @@ function App() {
                     <Finance addFinance={addFinance} />
                     <CostForm addCosts={addCosts} />
                     <Diagram costs={costs} />
-                    <FilterDate />
-                    <Results costs={costs} />
+                    <FilterDate months={months} setMonths={setMonths} />
+                    <Results costs={costs} setCategory={setCategory} />
                 </div>
-                {reversedСosts.map((cost) => {
+                {filterByCategory.map((cost) => {
                     return (
                         <div key={cost.id} className=' flex justify-between p-4 mx-10 border-bottom-solid'>
                             <div>

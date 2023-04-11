@@ -3,27 +3,41 @@ import { useState } from 'react'
 import uuid4 from 'uuid4'
 
 
-export const categories = ['Еда', 'Коммунальные платежи', 'Образование', 'Транспорт', 'Развлечения', 'Лекарства', 'Прочее']
+export const categories = [
+    'Еда',
+    'Коммунальные платежи',
+    'Образование',
+    'Транспорт',
+    'Развлечения',
+    'Лекарства',
+    'Прочее'
+]
 
 function CostForm(props) {
     const { addCosts } = props
     const [sumCost, setSumCost] = useState('')
     const [sumFinance, setSumFinance] = useState('')
     const [category, setCategory] = useState(categories[0])
+    const [formError, setFormError] = useState(null)
 
     const handleClick = event => {
         event.preventDefault()
-        const cost = {
-            sumCost,
-            sumFinance,
-            category,
-            id: uuid4(),
-            date: new Date()
+        if (parseInt(sumCost) > 0) {
+            const cost = {
+                sumCost,
+                sumFinance,
+                category,
+                id: uuid4(),
+                date: new Date()
+            }
+
+            addCosts(cost)
+            setSumCost('')
+            setSumFinance('')
+        } else {
+            setFormError('Поле не может быть пустым, введите данные')
         }
 
-        addCosts(cost)
-        setSumCost('')
-        setSumFinance('')
     }
 
     const changeHandler = e => {
@@ -32,11 +46,15 @@ function CostForm(props) {
     }
 
     return (
-        <div>
-            <form className="flex justify-center gap-3 m-8">
+        <div className='pt-4'>
+            <div className="text-red-600 mx-12 p-2">{formError}</div>
+            <form className="flex justify-center gap-3 mx-8">
                 <label className='text-xl font-semibold'>Расходы</label>
                 <input
-                    onChange={(event) => { setSumCost(event.target.value) }}
+                    onChange={(event) => {
+                        setFormError(null)
+                        setSumCost(event.target.value)
+                    }}
                     value={sumCost}
                     name="sum"
                     onInput={changeHandler}
@@ -50,6 +68,7 @@ function CostForm(props) {
                         // console.log(event.target.value)
                         setCategory(event.target.value)
                     }}>
+
 
                     {categories.map(c => {
                         return (

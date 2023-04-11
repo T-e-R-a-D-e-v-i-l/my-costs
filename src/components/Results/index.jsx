@@ -1,6 +1,6 @@
 import { categories } from 'components/CostsForm'
 
-function Results({ costs }) {
+function Results({ costs, setCategory }) {
 
     const getCategoryAmount = (category) => {
         const filtered = costs.filter(cost => {
@@ -45,7 +45,9 @@ function Results({ costs }) {
                 {categories.map((category) => {
                     return (
                         <div key={category} className='flex gap-2'>
-                            <button className="hover:underline text-zinc-800 text-lg font-medium">{category}:</button>
+                            <button
+                                onClick={() => setCategory(category)}
+                                className="hover:underline text-zinc-800 text-lg font-medium">{category}:</button>
                             <p>{getCategoryAmount(category)}</p>
                         </div>
                     )
