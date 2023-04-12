@@ -11,16 +11,30 @@ import FilterDate from 'components/FilterDate';
 function App() {
 
     const [costs, setCosts] = useState([])
-    // const [month, setMonth] = useState(null)
+    const [month, setMonth] = useState('month[1]')
     const [category, setCategory] = useState(null)
 
-    // console.log(month)
+    console.log(month)
 
     const reversedСosts = [...costs].reverse()
 
     const filterByCategory = reversedСosts.filter(c => {
         if (category) {
             if (c.category === category) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return true
+        }
+    })
+
+    const getMonth = date.getMonth()
+
+    const filterByMonth = reversedСosts.filter(m => {
+        if (month) {
+            if (m.month === getMonth) {
                 return true
             } else {
                 return false
@@ -46,7 +60,7 @@ function App() {
                     <Finance addFinance={addFinance} />
                     <CostForm addCosts={addCosts} />
                     <Diagram costs={costs} />
-                    {/* <FilterDate months={month} setMonths={setMonth} /> */}
+                    <FilterDate months={month} setMonths={setMonth} />
                     <Results costs={costs} setCategory={setCategory} />
                 </div>
                 {filterByCategory.map((cost) => {

@@ -37,7 +37,6 @@ function CostForm(props) {
         } else {
             setFormError('Поле не может быть пустым, введите данные')
         }
-
     }
 
     const changeHandler = e => {
@@ -68,7 +67,6 @@ function CostForm(props) {
                         // console.log(event.target.value)
                         setCategory(event.target.value)
                     }}>
-
 
                     {categories.map(c => {
                         return (
