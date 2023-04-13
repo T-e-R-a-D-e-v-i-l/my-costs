@@ -7,18 +7,20 @@ import { ru } from "date-fns/locale";
 import Finance from 'components/Finance'
 import Diagram from 'components/Diagram'
 import FilterDate from 'components/FilterDate';
+import { months } from 'components/FilterDate'
+
 
 function App() {
 
     const [costs, setCosts] = useState([])
-    const [month, setMonth] = useState('month[1]')
+    const [month, setMonth] = useState()
     const [category, setCategory] = useState(null)
-
-    console.log(month)
 
     const reversedСosts = [...costs].reverse()
 
     const filterByCategory = reversedСosts.filter(c => {
+
+        // console.log(category)
         if (category) {
             if (c.category === category) {
                 return true
@@ -30,17 +32,23 @@ function App() {
         }
     })
 
-    const getMonth = date.getMonth()
+    const filterByMonth = filterByCategory.filter(m => {
 
-    const filterByMonth = reversedСosts.filter(m => {
-        if (month) {
-            if (m.month === getMonth) {
+        let getMonthDate = m.date.getMonth()
+        let getMonth = months.indexOf(month)
+        getMonthDate++
+        // console.log('1', getMonth)
+        // console.log('2', getMonthDate)
+
+        if (month === 'За все время') {
+            return false
+        } else {
+
+            if (getMonthDate === getMonth) {
                 return true
             } else {
                 return false
             }
-        } else {
-            return true
         }
     })
 
@@ -60,10 +68,10 @@ function App() {
                     <Finance addFinance={addFinance} />
                     <CostForm addCosts={addCosts} />
                     <Diagram costs={costs} />
-                    <FilterDate months={month} setMonths={setMonth} />
+                    <FilterDate month={month} setMonth={setMonth} />
                     <Results costs={costs} setCategory={setCategory} />
                 </div>
-                {filterByCategory.map((cost) => {
+                {filterByMonth.map((cost) => {
                     return (
                         <div key={cost.id} className=' flex justify-between p-4 mx-10 border-bottom-solid'>
                             <div>
