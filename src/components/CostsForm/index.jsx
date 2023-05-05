@@ -30,7 +30,6 @@ function CostForm(props) {
                 id: uuid4(),
                 date: new Date()
             }
-
             addCosts(cost)
             setSumCost('')
             setSumFinance('')

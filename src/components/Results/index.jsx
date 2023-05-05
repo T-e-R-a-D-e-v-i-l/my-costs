@@ -1,9 +1,12 @@
 import { categories } from 'components/CostsForm'
+import { filterByMonth } from 'filterByMonth'
 
-function Results({ costs, setCategory }) {
+
+function Results({ costs, setCategory, month }) {
+    const filtredCosts = filterByMonth(costs, month)
 
     const getCategoryAmount = (category) => {
-        const filtered = costs.filter(cost => {
+        const filtered = filtredCosts.filter(cost => {
             if (category === cost.category) {
                 return true
             } else {
@@ -15,7 +18,7 @@ function Results({ costs, setCategory }) {
     }
 
     const getFinanceAmount = (sumFinance) => {
-        const filterFinance = costs.filter(cost => {
+        const filterFinance = filtredCosts.filter(cost => {
             if (cost.sumFinance) {
                 return true
             } else {
@@ -27,7 +30,8 @@ function Results({ costs, setCategory }) {
     }
 
     const getCostsAmount = (sumCost) => {
-        const filterCost = costs.filter(cost => {
+
+        const filterCost = filtredCosts.filter(cost => {
             if (cost.sumCost) {
                 return true
             } else {
@@ -52,7 +56,9 @@ function Results({ costs, setCategory }) {
                         </div>
                     )
                 })}
-                <p className='text-2xl font-bold'>Расходы : {getCostsAmount()} ₽</p>
+                <button
+                    // onClick={() => }
+                    className='hover:underline text-2xl font-bold'>Расходы : {getCostsAmount()} ₽</button>
             </div>
             <div className='pl-20'>
                 <h2 className='text-2xl font-bold underline'>Учет доходов</h2>
